@@ -8,6 +8,7 @@ const { User } = require('../model')
 class AuthenticationController {
   static firstUser = 0
   static user = {}
+
   /**
    * @param {Request} req
    * @param {Response} res
@@ -22,13 +23,7 @@ class AuthenticationController {
       res.status(201).json(userRegistered)
 
     } catch (err) {
-      res.status(500).json({
-        errors: [
-          { 
-            msg: "The register was failed, so try again" 
-          }
-        ]
-      })
+      res.status(500).json(await serializeErrors(["The register was failed, so try again"]))
     }
   }
   /**
@@ -38,12 +33,13 @@ class AuthenticationController {
    */
   async signInAndSendToken (req, res) {
     try {
+      let auth = AuthenticationController
       let { email, password } = req.body
 
-      let validateCredentials = await AuthenticationController.validateAndSetCredentials(email, password)
+      let validateCredentials = await auth.validateAndSetCredentials(email, password)
 
       validateCredentials ? 
-        res.json(await AuthenticationController.getCurrentUserAuthenticated())
+        res.json(await auth.getCurrentUserAuthenticated())
         : res.status(401).json(await serializeErrors(["Your credentials are invalids"]))
 
     } catch (err) {
@@ -52,8 +48,10 @@ class AuthenticationController {
   }
 
   static async validateAndSetCredentials (email, password) {
-    let user = await AuthenticationController.findCurrentUserByEmail(email)
-    AuthenticationController.user = user
+    let auth = AuthenticationController
+
+    let user = await auth.findCurrentUserByEmail(email)
+    auth.user = user
     return await validatePassword(password, user.password)
   }
 

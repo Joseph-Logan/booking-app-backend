@@ -1,30 +1,32 @@
-const jwt = require('jsonwebtoken')
+const { verify, sign } = require('jsonwebtoken')
+const { serializeErrors } = require('../app/validator/single-validation-error')
 
 class HandleToken {
 
   async validateActiveAuth (req, res, next) {
     try {
-      let getTokenValidated = await this.isValidToken(req)
+      let getTokenValidated = await HandleToken.isValidToken(req)
 
-      jwt.verify(getTokenValidated, process.env.SECRET_KEY)
+      verify(getTokenValidated, process.env.SECRET_KEY)
       next()
     } catch (err) {
-      res.status(400).send(err)
+      res.status(400).send(await serializeErrors([err]))
     }
   }
 
-  async isValidToken (req) {
+  static async isValidToken (req) {
     const token = req.header('Authorization') 
     if (!token) {
-      throw new Error('Forbidden')
+      throw 'Forbidden'
     }
     return token
   }
 
   async createToken (data) {
     try {
-      const token = jwt.sign({
-        data
+      const token = sign({
+        data,
+        exp: Math.floor(Date.now() / 1000) + (60 * 60)
       }, process.env.SECRET_KEY)
   
       return token
@@ -34,4 +36,4 @@ class HandleToken {
   }
 }
 
-module.exports = new HandleToken
+module.exports = new HandleToken()

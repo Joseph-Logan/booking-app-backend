@@ -4,7 +4,7 @@ const validatePassword = async (passwordFromUser, passwordStoraged) => {
   try {
     return bcrypt.compareSync(passwordFromUser, passwordStoraged)
   } catch (err) {
-    throw 'Not validate the current password, try again'
+    throw 'Opp has ocurred error, try again'
   }
 }
 
