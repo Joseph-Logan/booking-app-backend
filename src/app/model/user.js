@@ -42,9 +42,17 @@ const User = new mongoose.Schema({
     type: Boolean,
     default: true
   },
-  role: { 
+  role: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "Role"
+  },
+  created_at: {
+    type: Date,
+    default: new Date()
+  }, 
+  updated_at: {
+    type: Date,
+    default: new Date()
   }
 })
 

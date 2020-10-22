@@ -3,5 +3,8 @@
 */
 
 module.exports = {
-  User: require('./User')
+  Role: require('./role'),
+  User: require('./user'),
+  Membership: require('./membership'),
+  Project: require('./project')
 }

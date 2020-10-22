@@ -8,7 +8,7 @@ const validatePassword = async (passwordFromUser, passwordStoraged) => {
   }
 }
 
-const bcryptPassword = async password =>{
+const bcryptPassword = async password => {
   try {
     const salt = await bcrypt.genSalt(10)
     return await bcrypt.hash(password, salt)
@@ -21,3 +21,4 @@ module.exports = {
   validatePassword,
   bcryptPassword
 }
+

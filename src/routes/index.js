@@ -5,8 +5,7 @@ const { validateActiveAuth } = require('../services/handle-token')
  * Controller with your actions
  */
 
-// TODO Controllers
-const AuthController = require('../app/controller/AuthenticationController')
+const AuthController = require('../app/controller/authentication_controller')
 
 /**
 * ROUTES
