@@ -1,6 +1,7 @@
 const { validatePassword } = require('../../services/password')
 const { createToken } = require('../../services/handle-token')
 const { serializeErrors } = require('../validator/single-validation-error')
+
 const { 
   INVALID_CREDENTIALS, 
   REGISTER_FAILED 

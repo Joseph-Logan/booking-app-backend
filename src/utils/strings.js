@@ -21,6 +21,9 @@ const DEFAULT_PHONE_NUMBER = '0000-0000'
 const USD = 'USD'
 const CRC = 'CRC'
 
+// ROLE
+const DELETE_MSG = 'Role was deleted successfully'
+
 // DEFAULT MESSAGES
 const INVALID_CREDENTIALS = 'Your credentials are invalids'
 const ERROR_GET_DATA = 'Error to get data, try again'
@@ -43,5 +46,6 @@ module.exports = {
   CRC,
   ERROR_GET_DATA,
   ERROR_STORE_DATA,
-  ERROR_UPDATE_DATA
+  ERROR_UPDATE_DATA,
+  DELETE_MSG
 }
