@@ -1,8 +1,18 @@
 const { bcryptPassword } = require('../../services/password')
 const mongoose = require('mongoose')
-const { ROLE } = require('../../utils/strings')
+const { ROLE, PROJECT } = require('../../utils/strings')
 
 const User = new mongoose.Schema({
+  role: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: ROLE
+  },
+  projects: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: PROJECT
+    }
+  ],
   name: {
     type: String,
     required: true,
@@ -42,10 +52,6 @@ const User = new mongoose.Schema({
   is_enabled: {
     type: Boolean,
     default: true
-  },
-  role: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: ROLE
   },
   created_at: {
     type: Date,

@@ -7,7 +7,8 @@ const {
   RoleController,
   CategoryController,
   MembershipController,
-  ProjectController
+  ProjectController,
+  UserController
 } = require('../app/controller')
 
 /**
@@ -37,6 +38,10 @@ api.post('/membership', validateActiveAuth, MembershipController.store)
 api.get('/project', validateActiveAuth, ProjectController.index)
 api.post('/project', validateActiveAuth, ProjectController.store)
 
+
+// USER
+api.get('/user', validateActiveAuth, UserController.index)
+api.post('/user-project', validateActiveAuth, UserController.storeProjectByUserId)
 
 // Response when route was not found
 api.get('*', (req, res) => {

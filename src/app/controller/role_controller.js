@@ -58,7 +58,7 @@ class RoleController {
       let id = req.params.id
 
       let data = req.body
-      let roleUpdated = await Role.findByIdAndUpdate(id, data, {"new": true})
+      let roleUpdated = await Role.findByIdAndUpdate(id, data, {new: true})
 
       res.status(OK).json(roleUpdated)
     } catch (err) {

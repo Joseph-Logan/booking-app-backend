@@ -59,7 +59,7 @@ class CategoryController {
       let id = req.params.id
       let data = req.body
 
-      let categoryUpdated = await Category.findByIdAndUpdate(id, data, {"new": true})
+      let categoryUpdated = await Category.findByIdAndUpdate(id, data, {new: true})
       res.json(categoryUpdated)
     } catch (err) {
       res.status(SERVER_ERROR).json(await serializeErrors([ERROR_UPDATE_DATA]))

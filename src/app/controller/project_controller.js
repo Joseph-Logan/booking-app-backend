@@ -3,14 +3,11 @@ const { serializeErrors } = require('../validator/single-validation-error')
 
 const {
   ERROR_GET_DATA, 
-  ERROR_STORE_DATA,
-  ERROR_UPDATE_DATA,
-  ERROR_DELETE_DATA,
-  DELETE_ROLE_MSG
+  ERROR_STORE_DATA
 } = require('../../utils/strings')
 
 const {
-  SERVER_ERROR, CREATED, OK
+  SERVER_ERROR, CREATED
 } = require('../../utils/codes')
 
 class ProjectController {
