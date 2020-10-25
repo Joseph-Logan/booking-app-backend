@@ -1,5 +1,6 @@
 const { bcryptPassword } = require('../../services/password')
 const mongoose = require('mongoose')
+const { ROLE } = require('../../utils/strings')
 
 const User = new mongoose.Schema({
   name: {
@@ -44,7 +45,7 @@ const User = new mongoose.Schema({
   },
   role: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: "Role"
+    ref: ROLE
   },
   created_at: {
     type: Date,

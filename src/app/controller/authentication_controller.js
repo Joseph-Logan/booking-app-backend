@@ -1,6 +1,10 @@
 const { validatePassword } = require('../../services/password')
 const { createToken } = require('../../services/handle-token')
 const { serializeErrors, statusCode } = require('../validator/single-validation-error')
+const { 
+  INVALID_CREDENTIALS, 
+  REGISTER_FAILED 
+} = require('../../utils/strings')
 
 // MODELS
 const { User } = require('../model')
@@ -18,12 +22,12 @@ class AuthenticationController {
     try {
       let data = req.body
       let user = new User(data)
-
+      
       let userRegistered = await user.save()
       res.status(201).json(userRegistered)
 
     } catch (err) {
-      res.status(500).json(await serializeErrors(["The register was failed, so try again"]))
+      res.status(500).json(await serializeErrors([REGISTER_FAILED]))
     }
   }
   /**
@@ -40,7 +44,7 @@ class AuthenticationController {
 
       validateCredentials ? 
         res.json(await auth.getCurrentUserAuthenticated())
-        : res.status(401).json(await serializeErrors(["Your credentials are invalids"]))
+        : res.status(401).json(await serializeErrors([INVALID_CREDENTIALS]))
 
     } catch (err) {
       res.status(statusCode).json(await serializeErrors([err]))
@@ -60,7 +64,7 @@ class AuthenticationController {
     if (user.length > 0) {
       return user[AuthenticationController.firstUser]
     }
-    throw 'Your credentials are invalids'
+    throw INVALID_CREDENTIALS
   }
 
   static async getCurrentUserAuthenticated () {

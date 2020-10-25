@@ -10,7 +10,7 @@ const initDb = async () => {
 }
 
 const connectToMongoDB = async () => {
-  await connect(process.env.DB_CONNECT , { 
+  await connect(process.env.DB_CONNECT_DEV , { 
     useNewUrlParser: true, 
     useCreateIndex: true, 
     useUnifiedTopology: true, 

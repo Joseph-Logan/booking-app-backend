@@ -10,7 +10,7 @@ const AuthController = require('../app/controller/authentication_controller')
 /**
 * ROUTES
 */
-api.post('/sign-up', validateActiveAuth, AuthController.singUp)
+api.post('/sign-up', AuthController.singUp)
 api.post('/sign-in', AuthController.signInAndSendToken)
 
 /**
