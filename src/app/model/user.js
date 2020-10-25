@@ -19,13 +19,13 @@ const User = new mongoose.Schema({
     min: 2,
     max: 50
   },
-  first_surname: {
+  firstSurname: {
     type: String,
     required: true,
     min: 2,
     max: 50
   },
-  second_surname: {
+  secondSurname: {
     type: String,
     required: true,
     min: 2,
@@ -49,15 +49,15 @@ const User = new mongoose.Schema({
     min: 6,
     unique: true
   },
-  is_enabled: {
+  isEnabled: {
     type: Boolean,
     default: true
   },
-  created_at: {
+  createdAt: {
     type: Date,
     default: new Date()
   }, 
-  updated_at: {
+  updatedAt: {
     type: Date,
     default: new Date()
   }
@@ -73,7 +73,6 @@ User.pre('save', async function (next) {
     next()
   } catch (err) {
     next(err)
-    console.warn(err, 'catch')
   }
 })
 

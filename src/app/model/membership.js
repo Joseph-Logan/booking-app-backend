@@ -8,11 +8,11 @@ const Membership = new mongoose.Schema({
     max: 50,
     unique: true
   },
-  start_date: {
+  startDate: {
     type: Date,
     default: new Date()
   },
-  end_date: {
+  endDate: {
     type: Date,
     required: true,
   },
@@ -20,19 +20,19 @@ const Membership = new mongoose.Schema({
     type: String,
     default: DEFAULT_DESCRIPTION
   },
-  price_membership: {
+  priceMembership: {
     type: Number,
     default: 7.99
   },
-  type_currency: {
+  typeCurrency: {
     type: String,
     default: USD
   },
-  created_at: {
+  createdAt: {
     type: Date,
     default: new Date()
   }, 
-  updated_at: {
+  updatedAt: {
     type: Date,
     default: new Date()
   }

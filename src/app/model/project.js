@@ -23,16 +23,16 @@ const Project = new mongoose.Schema({
     min: 10,
     required: true
   },
-  url_image_path: {
+  urlImagePath: {
     type: String,
     max: 1024,
     default: DEFAULT_PATH_IMG
   },
-  created_at: {
+  createdAt: {
     type: Date,
     default: new Date()
   }, 
-  updated_at: {
+  updatedAt: {
     type: Date,
     default: new Date()
   }

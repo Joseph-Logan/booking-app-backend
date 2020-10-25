@@ -7,11 +7,11 @@ const Category = new mongoose.Schema({
     min: 2,
     required: true
   },
-  created_at: {
+  createdAt: {
     type: Date,
     default: new Date()
   },
-  updated_at: {
+  updatedAt: {
     type: Date,
     default: new Date()
   }

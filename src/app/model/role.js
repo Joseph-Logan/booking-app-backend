@@ -7,11 +7,11 @@ const Role = new mongoose.Schema({
     max: 50,
     unique: true
   },
-  created_at: {
+  createdAt: {
     type: Date,
     default: new Date()
   },
-  updated_at: {
+  updatedAt: {
     type: Date,
     default: new Date()
   }

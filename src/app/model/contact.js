@@ -7,19 +7,19 @@ const Contact = new mongoose.Schema({
     max: 1024,
     default: DEFAULT_DIRECTION
   },
-  phone_1: {
+  phone1: {
     type: String,
     max: 15
   },
-  phone_2: {
+  phone2: {
     type: String,
     default: DEFAULT_PHONE_NUMBER
   },
-  created_at: {
+  createdAt: {
     type: Date,
     default: new Date()
   },
-  updated_at: {
+  updatedAt: {
     type: Date,
     default: new Date()
   }
