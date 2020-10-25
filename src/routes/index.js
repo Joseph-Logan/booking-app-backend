@@ -5,7 +5,9 @@ const { validateActiveAuth } = require('../services/handle-token')
 const { 
   AuthController,
   RoleController,
-  CategoryController
+  CategoryController,
+  MembershipController,
+  ProjectController
 } = require('../app/controller')
 
 /**
@@ -27,6 +29,13 @@ api.get('/category/:id', validateActiveAuth, CategoryController.show)
 api.post('/category', validateActiveAuth, CategoryController.store)
 api.put('/category/:id', validateActiveAuth, CategoryController.update)
 api.delete('/category/:id', validateActiveAuth, CategoryController.destroy)
+
+// MEMBERSHIP
+api.post('/membership', validateActiveAuth, MembershipController.store)
+
+// PROJECT
+api.post('/project', validateActiveAuth, ProjectController.store)
+
 
 // Response when route was not found
 api.get('*', (req, res) => {

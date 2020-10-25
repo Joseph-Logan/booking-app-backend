@@ -2,6 +2,16 @@ const mongoose = require('mongoose')
 const { MEMBERSHIP, DEFAULT_PATH_IMG, CATEGORY } = require('../../utils/strings')
 
 const Project = new mongoose.Schema({
+  membership: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: MEMBERSHIP,
+    required: true
+  },
+  category: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: CATEGORY,
+    required: true
+  },
   name: {
     type: String,
     max: 100,
@@ -14,20 +24,10 @@ const Project = new mongoose.Schema({
     min: 10,
     required: true
   },
-  membership_id: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: MEMBERSHIP,
-    required: true
-  },
   url_image_path: {
     type: String,
     max: 1024,
     default: DEFAULT_PATH_IMG
-  },
-  category_id: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: CATEGORY,
-    required: true
   },
   created_at: {
     type: Date,

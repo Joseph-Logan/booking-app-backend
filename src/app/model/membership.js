@@ -1,11 +1,12 @@
 const { DEFAULT_DESCRIPTION, USD } = require('../../utils/strings')
 const mongoose = require('mongoose')
+const { createCode } = require('../../services/membership')
 
 const Membership = new mongoose.Schema({
   code: {
     type: String,
-    required: true,
-    max: 50
+    max: 50,
+    unique: true
   },
   start_date: {
     type: Date,
@@ -21,7 +22,7 @@ const Membership = new mongoose.Schema({
   },
   price_membership: {
     type: Number,
-    default: 8.00
+    default: 7.99
   },
   type_currency: {
     type: String,
@@ -34,6 +35,16 @@ const Membership = new mongoose.Schema({
   updated_at: {
     type: Date,
     default: new Date()
+  }
+})
+
+Membership.pre('save', async function (next) {
+  try {
+    this.code = await createCode()
+
+    next()
+  } catch (err) {
+    next(err)
   }
 })
 

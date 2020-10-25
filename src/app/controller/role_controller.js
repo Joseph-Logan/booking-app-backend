@@ -6,7 +6,7 @@ const {
   ERROR_STORE_DATA,
   ERROR_UPDATE_DATA,
   ERROR_DELETE_DATA,
-  DELETE_MSG
+  DELETE_ROLE_MSG
 } = require('../../utils/strings')
 
 const {
@@ -71,7 +71,7 @@ class RoleController {
       let id = req.params.id
 
       await Role.findByIdAndDelete(id)
-      res.json(DELETE_MSG)
+      res.json(DELETE_ROLE_MSG)
     } catch (err) {
       res.status(SERVER_ERROR).json(await serializeErrors([ERROR_DELETE_DATA]))
     }

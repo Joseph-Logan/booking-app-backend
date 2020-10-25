@@ -22,7 +22,13 @@ const USD = 'USD'
 const CRC = 'CRC'
 
 // ROLE
-const DELETE_MSG = 'Role was deleted successfully'
+const DELETE_ROLE_MSG = 'Role was deleted successfully'
+
+// CATEGORY
+const DELETE_CATEGORY_MSG = 'Category was deleted successfully'
+
+// CODE
+const ERROR_CODE_MSG = 'Error to generate code'
 
 // DEFAULT MESSAGES
 const INVALID_CREDENTIALS = 'Your credentials are invalids'
@@ -47,5 +53,7 @@ module.exports = {
   ERROR_GET_DATA,
   ERROR_STORE_DATA,
   ERROR_UPDATE_DATA,
-  DELETE_MSG
+  DELETE_ROLE_MSG,
+  DELETE_CATEGORY_MSG,
+  ERROR_CODE_MSG
 }

@@ -13,7 +13,6 @@ const {
   BAD_REQUEST
 } = require('../../utils/codes')
 
-
 // MODELS
 const { User } = require('../model')
 
