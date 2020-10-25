@@ -114,4 +114,4 @@ class AuthenticationController {
 
 }
 
-module.exports = new AuthenticationController 
+module.exports = new AuthenticationController()

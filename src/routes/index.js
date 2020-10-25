@@ -1,12 +1,12 @@
 const api = require('express').Router();
 const { validateActiveAuth } = require('../services/handle-token') 
-/**
- * Passing a filter to some fields that will be required
- * Controller with your actions
- */
 
-const AuthController = require('../app/controller/authentication_controller')
-const RoleController = require('../app/controller/role_controller') // -> completed
+// Controllers
+const { 
+  AuthController,
+  RoleController,
+  CategoryController
+} = require('../app/controller')
 
 /**
 * ROUTES
@@ -20,9 +20,15 @@ api.get('/role/:id', validateActiveAuth, RoleController.show)
 api.post('/role', validateActiveAuth, RoleController.store)
 api.put('/role/:id', validateActiveAuth, RoleController.update)
 api.delete('/role/:id', validateActiveAuth, RoleController.destroy)
-/**
- * Response when route was not found
- */
+
+// CATEGORY
+api.get('/category', validateActiveAuth, CategoryController.index)
+api.get('/category/:id', validateActiveAuth, CategoryController.show)
+api.post('/category', validateActiveAuth, CategoryController.store)
+api.put('/category/:id', validateActiveAuth, CategoryController.update)
+api.delete('/category/:id', validateActiveAuth, CategoryController.destroy)
+
+// Response when route was not found
 api.get('*', (req, res) => {
   res.status(404).send('Error Route')
 })

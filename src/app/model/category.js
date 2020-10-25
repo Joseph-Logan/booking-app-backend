@@ -5,7 +5,8 @@ const Category = new mongoose.Schema({
     type: String,
     max: 20,
     min: 2,
-    required: true
+    required: true,
+    unique: true
   },
   created_at: {
     type: Date,
