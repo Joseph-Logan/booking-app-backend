@@ -69,7 +69,9 @@ class AuthenticationController {
 
   static async findCurrentUserByEmail (email) {
     let user = await User.find({ email }).select('-__v')
-    if (user.length > 0) {
+    let isActive = user[AuthenticationController.firstUser].is_enabled
+
+    if (user.length > 0 && isActive) {
       return user[AuthenticationController.firstUser]
     }
     throw INVALID_CREDENTIALS
