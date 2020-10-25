@@ -6,12 +6,18 @@ const { validateActiveAuth } = require('../services/handle-token')
  */
 
 const AuthController = require('../app/controller/authentication_controller')
+const RoleController = require('../app/controller/role_controller')
 
 /**
 * ROUTES
 */
 api.post('/sign-up', AuthController.singUp)
 api.post('/sign-in', AuthController.signInAndSendToken)
+
+// ROLES
+
+api.get('/role', validateActiveAuth, RoleController.index)
+api.post('/role', validateActiveAuth, RoleController.store)
 
 /**
  * Response when route was not found

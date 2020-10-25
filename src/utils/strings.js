@@ -6,7 +6,6 @@ const MEMBERSHIP = 'Membership'
 const CATEGORY = 'Category'
 
 // REGISTER 
-const INVALID_CREDENTIALS = 'Your credentials are invalids'
 const REGISTER_FAILED = 'The register was failed, so try again'
 
 // MEMBERSHIP
@@ -22,6 +21,12 @@ const DEFAULT_PHONE_NUMBER = '0000-0000'
 const USD = 'USD'
 const CRC = 'CRC'
 
+// DEFAULT MESSAGES
+const INVALID_CREDENTIALS = 'Your credentials are invalids'
+const ERROR_GET_DATA = 'Error to get data, try again'
+const ERROR_STORE_DATA = 'Error to store, try again'
+const ERROR_UPDATE_DATA = 'Error to update item, try again'
+
 module.exports = {
   PROJECT,
   USER,
@@ -35,5 +40,8 @@ module.exports = {
   DEFAULT_DIRECTION,
   DEFAULT_PHONE_NUMBER,
   USD,
-  CRC
+  CRC,
+  ERROR_GET_DATA,
+  ERROR_STORE_DATA,
+  ERROR_UPDATE_DATA
 }

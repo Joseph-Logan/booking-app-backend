@@ -1,5 +1,6 @@
 const { verify, sign } = require('jsonwebtoken')
 const { serializeErrors } = require('../app/validator/single-validation-error')
+const { FORBIDEN } = require('../utils/codes')
 
 const validateActiveAuth = async (req, res, next) => {
   try {
@@ -8,7 +9,7 @@ const validateActiveAuth = async (req, res, next) => {
     verify(getTokenValidated, process.env.SECRET_KEY)
     next()
   } catch (err) {
-    res.status(400).send(await serializeErrors([err]))
+    res.status(FORBIDEN).send(await serializeErrors([err]))
   }
 }
 

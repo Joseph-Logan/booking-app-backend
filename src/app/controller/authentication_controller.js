@@ -1,10 +1,17 @@
 const { validatePassword } = require('../../services/password')
 const { createToken } = require('../../services/handle-token')
-const { serializeErrors, statusCode } = require('../validator/single-validation-error')
+const { serializeErrors } = require('../validator/single-validation-error')
 const { 
   INVALID_CREDENTIALS, 
   REGISTER_FAILED 
 } = require('../../utils/strings')
+
+const { 
+  CREATED, 
+  SERVER_ERROR, 
+  BAD_REQUEST
+} = require('../../utils/codes')
+
 
 // MODELS
 const { User } = require('../model')
@@ -24,10 +31,10 @@ class AuthenticationController {
       let user = new User(data)
       
       let userRegistered = await user.save()
-      res.status(201).json(userRegistered)
+      res.status(CREATED).json(userRegistered)
 
     } catch (err) {
-      res.status(500).json(await serializeErrors([REGISTER_FAILED]))
+      res.status(SERVER_ERROR).json(await serializeErrors([REGISTER_FAILED]))
     }
   }
   /**
@@ -44,10 +51,10 @@ class AuthenticationController {
 
       validateCredentials ? 
         res.json(await auth.getCurrentUserAuthenticated())
-        : res.status(401).json(await serializeErrors([INVALID_CREDENTIALS]))
+        : res.status(BAD_REQUEST).json(await serializeErrors([INVALID_CREDENTIALS]))
 
     } catch (err) {
-      res.status(statusCode).json(await serializeErrors([err]))
+      res.status(BAD_REQUEST).json(await serializeErrors([err]))
     }
   }
 

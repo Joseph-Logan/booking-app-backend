@@ -4,12 +4,13 @@ const Role = new mongoose.Schema({
   name: {
     type: String,
     required: true,
-    max: 50
+    max: 50,
+    unique: true
   },
   created_at: {
     type: Date,
     default: new Date()
-  }, 
+  },
   updated_at: {
     type: Date,
     default: new Date()
