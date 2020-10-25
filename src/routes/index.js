@@ -34,6 +34,7 @@ api.delete('/category/:id', validateActiveAuth, CategoryController.destroy)
 api.post('/membership', validateActiveAuth, MembershipController.store)
 
 // PROJECT
+api.get('/project', validateActiveAuth, ProjectController.index)
 api.post('/project', validateActiveAuth, ProjectController.store)
 
 

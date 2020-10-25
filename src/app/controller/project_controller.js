@@ -15,6 +15,17 @@ const {
 
 class ProjectController {
 
+  async index (req, res) {
+    try {
+      let projects = await Project.find().populate('membership category', '-__v').select('-__v')
+      return res.json({
+        projects
+      })
+    } catch (err) {
+      return res.status(SERVER_ERROR).json(await serializeErrors([ERROR_GET_DATA]))
+    }
+  }
+
   async store (req, res) {
     try {
       let data = req.body

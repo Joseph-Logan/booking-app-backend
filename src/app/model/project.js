@@ -4,19 +4,18 @@ const { MEMBERSHIP, DEFAULT_PATH_IMG, CATEGORY } = require('../../utils/strings'
 const Project = new mongoose.Schema({
   membership: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: MEMBERSHIP,
-    required: true
+    ref: MEMBERSHIP
   },
   category: {
     type: mongoose.Schema.Types.ObjectId,
     ref: CATEGORY,
-    required: true
   },
   name: {
     type: String,
     max: 100,
     min: 6,
-    required: true
+    required: true,
+    unique: true
   },
   description: {
     type: String,
