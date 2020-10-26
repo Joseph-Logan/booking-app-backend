@@ -54,7 +54,7 @@ class AuthenticationController {
         : res.status(BAD_REQUEST).json(await serializeErrors([INVALID_CREDENTIALS]))
 
     } catch (err) {
-      res.status(BAD_REQUEST).json(await serializeErrors([err]))
+      res.status(SERVER_ERROR).json(await serializeErrors([INVALID_CREDENTIALS]))
     }
   }
 
@@ -68,7 +68,7 @@ class AuthenticationController {
 
   static async findCurrentUserByEmail (email) {
     let user = await User.find({ email }).select('-__v')
-    let isActive = user[AuthenticationController.firstUser].is_enabled
+    let isActive = user[AuthenticationController.firstUser].isEnabled
 
     if (user.length > 0 && isActive) {
       return user[AuthenticationController.firstUser]
