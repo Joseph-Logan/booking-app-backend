@@ -16,7 +16,7 @@ class UserController {
     try {
       let users = await User.find().populate('projects', '-__v').select('-__v')
 
-      res.json({
+      return res.json({
         users
       })
     } catch (err) {
