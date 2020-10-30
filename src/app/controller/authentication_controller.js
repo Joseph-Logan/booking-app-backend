@@ -54,6 +54,7 @@ class AuthenticationController {
         : res.status(BAD_REQUEST).json(await serializeErrors([INVALID_CREDENTIALS]))
 
     } catch (err) {
+      console.log(err)
       res.status(SERVER_ERROR).json(await serializeErrors([INVALID_CREDENTIALS]))
     }
   }
