@@ -7,7 +7,8 @@ const {
 } = require('../../utils/strings')
 
 const {
-  SERVER_ERROR
+  SERVER_ERROR,
+  ACCEPTED
 } = require('../../utils/codes')
 
 class UserController {
@@ -38,7 +39,7 @@ class UserController {
         {new: true}
       )
 
-      return res.status(202).json(userUpdated)
+      return res.status(ACCEPTED).json(userUpdated)
     } catch (err) {
       return res.status(SERVER_ERROR).json(await serializeErrors([ERROR_STORE_DATA]))
     }

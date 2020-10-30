@@ -3,11 +3,13 @@ const SERVER_ERROR = 500
 const FORBIDEN = 403
 const CREATED = 201
 const OK = 200
+const ACCEPTED = 202
 
 module.exports = {
   BAD_REQUEST,
   SERVER_ERROR,
   FORBIDEN,
   CREATED,
-  OK
+  OK,
+  ACCEPTED
 }

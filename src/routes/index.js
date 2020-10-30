@@ -38,7 +38,6 @@ api.post('/membership', validateActiveAuth, MembershipController.store)
 api.get('/project', validateActiveAuth, ProjectController.index)
 api.post('/project', validateActiveAuth, ProjectController.store)
 
-
 // USER
 api.get('/user', validateActiveAuth, UserController.index)
 api.post('/user-project', validateActiveAuth, UserController.storeProjectByUserId)
