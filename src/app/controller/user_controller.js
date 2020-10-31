@@ -31,11 +31,10 @@ class UserController {
       let id = req.params.id
       let data = req.body
 
-      let userUpdated = await User.findOneAndUpdate({id}, data, { returnOriginal: false })
-      console.log(userUpdated, "updated")
+      let userUpdated = await User.findByIdAndUpdate(id, data, {new: true})
+
       return res.json(userUpdated)
     } catch (err) {
-      console.log(err)
       return res.status(SERVER_ERROR).json(await serializeErrors([ERROR_UPDATE_DATA]))
     }
   }
