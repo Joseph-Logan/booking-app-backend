@@ -31,10 +31,10 @@ class AuthenticationController {
       let user = new User(data)
       
       let userRegistered = await user.save()
-      res.status(CREATED).json(userRegistered)
+      return res.status(CREATED).json(userRegistered)
 
     } catch (err) {
-      res.status(SERVER_ERROR).json(await serializeErrors([REGISTER_FAILED]))
+      return res.status(SERVER_ERROR).json(await serializeErrors([REGISTER_FAILED]))
     }
   }
   /**
@@ -49,13 +49,12 @@ class AuthenticationController {
 
       let validateCredentials = await auth.validateAndSetCredentials(email, password)
 
-      validateCredentials ? 
+      return validateCredentials ? 
         res.json(await auth.getCurrentUserAuthenticated())
         : res.status(BAD_REQUEST).json(await serializeErrors([INVALID_CREDENTIALS]))
 
     } catch (err) {
-      console.log(err)
-      res.status(SERVER_ERROR).json(await serializeErrors([INVALID_CREDENTIALS]))
+      return res.status(SERVER_ERROR).json(await serializeErrors([INVALID_CREDENTIALS]))
     }
   }
 

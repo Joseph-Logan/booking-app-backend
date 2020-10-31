@@ -28,6 +28,10 @@ const Project = new mongoose.Schema({
     max: 1024,
     default: DEFAULT_PATH_IMG
   },
+  isEnabled: {
+    type: Boolean,
+    default: true
+  },
   createdAt: {
     type: Date,
     default: new Date()

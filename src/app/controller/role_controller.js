@@ -13,17 +13,16 @@ const {
   SERVER_ERROR, CREATED, OK
 } = require('../../utils/codes')
 
-
 class RoleController {
 
   async index (req, res) {
     try {
       let roles = await Role.find().select('-__v')
-      res.json({
+      return res.json({
         roles
       })
     } catch (err) {
-      res.status(SERVER_ERROR).json(await serializeErrors([ERROR_GET_DATA]))
+      return res.status(SERVER_ERROR).json(await serializeErrors([ERROR_GET_DATA]))
     }
   }
 
@@ -32,11 +31,11 @@ class RoleController {
       let id = req.params.id
       let role = await Role.findById(id).select('-__v')
 
-      res.json({
+      return res.json({
         role
       })
     } catch (err) {
-      res.status(SERVER_ERROR).json(await serializeErrors([ERROR_GET_DATA]))
+      return res.status(SERVER_ERROR).json(await serializeErrors([ERROR_GET_DATA]))
     }
   }
 
@@ -47,9 +46,9 @@ class RoleController {
       let role = new Role(data)
       let userSaved = await role.save()
 
-      res.status(CREATED).json(userSaved)
+      return res.status(CREATED).json(userSaved)
     } catch (err) {
-      res.status(SERVER_ERROR).json(await serializeErrors([ERROR_STORE_DATA]))
+      return res.status(SERVER_ERROR).json(await serializeErrors([ERROR_STORE_DATA]))
     }
   }
 
@@ -60,9 +59,9 @@ class RoleController {
       let data = req.body
       let roleUpdated = await Role.findByIdAndUpdate(id, data, {new: true})
 
-      res.status(OK).json(roleUpdated)
+      return res.status(OK).json(roleUpdated)
     } catch (err) {
-      res.status(SERVER_ERROR).json(await serializeErrors([ERROR_UPDATE_DATA]))
+      return res.status(SERVER_ERROR).json(await serializeErrors([ERROR_UPDATE_DATA]))
     }
   }
 
@@ -71,9 +70,9 @@ class RoleController {
       let id = req.params.id
 
       await Role.findByIdAndDelete(id)
-      res.json(DELETE_ROLE_MSG)
+      return res.json(DELETE_ROLE_MSG)
     } catch (err) {
-      res.status(SERVER_ERROR).json(await serializeErrors([ERROR_DELETE_DATA]))
+      return res.status(SERVER_ERROR).json(await serializeErrors([ERROR_DELETE_DATA]))
     }
   }
 }

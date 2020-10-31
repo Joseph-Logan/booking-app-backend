@@ -20,11 +20,11 @@ class CategoryController {
     try {
       let categories = await Category.find()
 
-      res.json({
+      return res.json({
         categories
       })
     } catch (err) {
-      res.status(SERVER_ERROR).json(await serializeErrors([ERROR_GET_DATA]))
+      return res.status(SERVER_ERROR).json(await serializeErrors([ERROR_GET_DATA]))
     }
   }
 
@@ -34,11 +34,11 @@ class CategoryController {
 
       let category = await Category.findById(id)
 
-      res.json({
+      return res.json({
         category
       })
     } catch (err) {
-      res.status(SERVER_ERROR).json(await serializeErrors([ERROR_GET_DATA]))
+      return res.status(SERVER_ERROR).json(await serializeErrors([ERROR_GET_DATA]))
     }
   }
 
@@ -48,9 +48,9 @@ class CategoryController {
 
       let category = new Category(data)
       let categorySaved = await category.save()
-      res.status(CREATED).json(categorySaved)
+      return res.status(CREATED).json(categorySaved)
     } catch (err) {
-      res.status(SERVER_ERROR).json(await serializeErrors([ERROR_STORE_DATA]))
+      return res.status(SERVER_ERROR).json(await serializeErrors([ERROR_STORE_DATA]))
     }
   }
 
@@ -60,9 +60,9 @@ class CategoryController {
       let data = req.body
 
       let categoryUpdated = await Category.findByIdAndUpdate(id, data, {new: true})
-      res.json(categoryUpdated)
+      return res.json(categoryUpdated)
     } catch (err) {
-      res.status(SERVER_ERROR).json(await serializeErrors([ERROR_UPDATE_DATA]))
+      return res.status(SERVER_ERROR).json(await serializeErrors([ERROR_UPDATE_DATA]))
     }
   }
 
@@ -71,9 +71,9 @@ class CategoryController {
       let id = req.params.id
 
       await Category.findByIdAndDelete(id)
-      res.json(DELETE_CATEGORY_MSG)
+      return res.json(DELETE_CATEGORY_MSG)
     } catch (err) {
-      res.status(SERVER_ERROR).json(await serializeErrors([ERROR_DELETE_DATA]))
+      return res.status(SERVER_ERROR).json(await serializeErrors([ERROR_DELETE_DATA]))
     }
   }
 

@@ -3,7 +3,8 @@ const { serializeErrors } = require('../validator/single-validation-error')
 
 const {
   ERROR_GET_DATA, 
-  ERROR_STORE_DATA
+  ERROR_STORE_DATA,
+  ERROR_UPDATE_DATA
 } = require('../../utils/strings')
 
 const {
@@ -22,6 +23,20 @@ class UserController {
       })
     } catch (err) {
       return res.status(SERVER_ERROR).json(await serializeErrors([ERROR_GET_DATA]))
+    }
+  }
+
+  async update (req, res) {
+    try {
+      let id = req.params.id
+      let data = req.body
+
+      let userUpdated = await User.findOneAndUpdate({id}, data, { returnOriginal: false })
+      console.log(userUpdated, "updated")
+      return res.json(userUpdated)
+    } catch (err) {
+      console.log(err)
+      return res.status(SERVER_ERROR).json(await serializeErrors([ERROR_UPDATE_DATA]))
     }
   }
 

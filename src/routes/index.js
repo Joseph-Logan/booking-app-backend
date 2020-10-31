@@ -32,6 +32,7 @@ api.put('/category/:id', validateActiveAuth, CategoryController.update)
 api.delete('/category/:id', validateActiveAuth, CategoryController.destroy)
 
 // MEMBERSHIP
+api.get('/membership', validateActiveAuth, MembershipController.index)
 api.post('/membership', validateActiveAuth, MembershipController.store)
 
 // PROJECT
@@ -41,6 +42,7 @@ api.post('/project', validateActiveAuth, ProjectController.store)
 // USER
 api.get('/user', validateActiveAuth, UserController.index)
 api.post('/user-project', validateActiveAuth, UserController.storeProjectByUserId)
+api.put('/user/:id', validateActiveAuth, UserController.update)
 
 // Response when route was not found
 api.get('*', (req, res) => {

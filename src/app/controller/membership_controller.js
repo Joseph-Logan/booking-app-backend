@@ -11,6 +11,19 @@ const {
 
 class MembershipController {
 
+  async index (req, res) {
+    try {
+
+      let memberships = await Membership.find()
+
+      return res.json({
+        memberships
+      })
+    } catch (err) {
+      return res.status(SERVER_ERROR).json(await serializeErrors([ERROR_GET_DATA]))
+    }
+  }
+
   async store (req, res) {
     try {
       let data = req.body
