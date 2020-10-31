@@ -1,4 +1,7 @@
-const { validatePassword } = require('../../services/password')
+const { 
+  validatePassword,
+  deletePasswordInObject
+} = require('../../services/password')
 const { createToken } = require('../../services/handle-token')
 const { serializeErrors } = require('../validator/single-validation-error')
 
@@ -31,8 +34,9 @@ class AuthenticationController {
       let user = new User(data)
       
       let userRegistered = await user.save()
-      return res.status(CREATED).json(userRegistered)
+      let dataResponse = await deletePasswordInObject(userRegistered)
 
+      return res.status(CREATED).json(dataResponse)
     } catch (err) {
       return res.status(SERVER_ERROR).json(await serializeErrors([REGISTER_FAILED]))
     }
@@ -77,7 +81,9 @@ class AuthenticationController {
   }
 
   static async getCurrentUserAuthenticated () {
-    let user = AuthenticationController.user
+    let data = AuthenticationController.user
+
+    let user = await deletePasswordInObject(data)
     return {
       user,
       token: await createToken(user)

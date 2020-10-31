@@ -12,6 +12,11 @@ const {
   ACCEPTED
 } = require('../../utils/codes')
 
+const {
+  checkPassword,
+  bcryptPassword
+} = require('../../services/password')
+
 class UserController {
 
   async index (req, res) {
@@ -31,6 +36,10 @@ class UserController {
       let id = req.params.id
       let data = req.body
 
+      let check = await checkPassword(data)
+      if (check) {
+        data.password = await bcryptPassword(data.password)
+      }
       let userUpdated = await User.findByIdAndUpdate(id, data, {new: true})
 
       return res.json(userUpdated)
