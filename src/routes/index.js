@@ -34,7 +34,7 @@ api.delete('/category/:id', validateActiveAuth, CategoryController.destroy)
 // MEMBERSHIP
 api.get('/membership', validateActiveAuth, MembershipController.index)
 api.post('/membership', validateActiveAuth, MembershipController.store)
-
+api.post('/purchase-membership', validateActiveAuth, MembershipController.purchaseMembership)
 // PROJECT
 api.get('/project', validateActiveAuth, ProjectController.index)
 api.post('/project', validateActiveAuth, ProjectController.store)

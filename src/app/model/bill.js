@@ -1,0 +1,40 @@
+const mongoose = require('mongoose')
+const { 
+  USER, 
+  PROJECT 
+} = require("../../utils/strings");
+
+const BillSchema = new mongoose.Schema({
+  user: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: USER
+  },
+  project: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: PROJECT
+  },
+  price: {
+    type: Number,
+    required: true
+  },
+  description: {
+    type: String,
+    required: true,
+    max: 100
+  },
+  transanctionId: {
+    type: String,
+    required: true,
+    unique: true
+  },
+  createdAt: {
+    type: Date,
+    default: new Date()
+  }, 
+  updatedAt: {
+    type: Date,
+    default: new Date()
+  }
+})
+
+module.exports = mongoose.model('Bill', BillSchema)

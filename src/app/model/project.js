@@ -28,9 +28,10 @@ const Project = new mongoose.Schema({
     max: 1024,
     default: DEFAULT_PATH_IMG
   },
+  // TODO modify when is added a membership to a project
   isEnabled: {
     type: Boolean,
-    default: true
+    default: false
   },
   createdAt: {
     type: Date,

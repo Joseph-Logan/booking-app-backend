@@ -28,6 +28,16 @@ const Membership = new mongoose.Schema({
     type: String,
     default: USD
   },
+  // TODO modify when is added to a project
+  isActive: {
+    type: Boolean,
+    default: false
+  },
+  transactionId: {
+    type: String,
+    required: true,
+    unique: true
+  },
   createdAt: {
     type: Date,
     default: new Date()
