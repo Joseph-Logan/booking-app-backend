@@ -9,10 +9,6 @@ const BillSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: USER
   },
-  project: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: PROJECT
-  },
   price: {
     type: Number,
     required: true

@@ -14,7 +14,13 @@ const simplePurchase = async (accessToken, data) => {
   return axios.post(`${process.env.URL_PAYMENTS}/v1/charges/simple/create/`, data)
 }
 
+const purchaseMembership = async (cardCredentials) => {
+  let accessToken = await getAccessToken()
+  return await simplePurchase(accessToken.data, cardCredentials)
+}
+
 module.exports = {
   getAccessToken,
-  simplePurchase
+  simplePurchase,
+  purchaseMembership
 }

@@ -8,5 +8,6 @@ module.exports = {
   Membership: require('./membership'),
   Project: require('./project'),
   Category: require('./category'),
-  Contact: require('./contact')
+  Contact: require('./contact'),
+  Bill: require('./bill')
 }

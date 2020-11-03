@@ -1,18 +1,17 @@
-const { Membership } = require('../model')
+const { Membership, Bill } = require('../model')
 const { serializeErrors } = require('../validator/single-validation-error')
 const { 
-  getAccessToken,
-  simplePurchase
+  purchaseMembership
 } = require('../../services/payment')
 
 const {
-  ERROR_STORE_DATA,
-  USD
+  ERROR_STORE_DATA
 } = require('../../utils/strings')
 
 const {
   SERVER_ERROR, CREATED
 } = require('../../utils/codes')
+const { findById } = require('../model/bill')
 
 class MembershipController {
 
@@ -28,43 +27,42 @@ class MembershipController {
     }
   }
 
-  async store (req, res) {
+  async pruchaseAndStoreMembership (req, res) {
     try {
-      // TODO call membreship method purchase, it's will return a transactionId
-      let data = req.body
-      let membership = new Membership(data)
-      
+      let { 
+        membership_data, 
+        card_credentials,
+        user_data
+      } = req.body
+
+      let purchaseResult = await purchaseMembership(card_credentials)
+
+      let billData = {
+        user: user_data.id,
+        price: card_credentials.amount,
+        description: card_credentials.description,
+        transanctionId: purchaseResult.data.charge_id
+      }
+      let bill = new Bill(billData)
+      await bill.save()
+
+      let membership = new Membership({
+        ...membership_data, 
+        transactionId: purchaseResult.data.charge_id
+      })
       let membershipSaved = await membership.save()
 
       return res.status(CREATED).json(membershipSaved)
     } catch (err) {
-      return res.status(SERVER_ERROR).json(await serializeErrors([ERROR_STORE_DATA]))
+      let error = err?.response?.data?.detail || ERROR_STORE_DATA
+      return res.status(SERVER_ERROR).json(await serializeErrors([error]))
     }
   }
 
-  async purchaseMembership (req, res) {
-    try {
-      let accessToken = await getAccessToken()
-      // let cardCredentials = req.body
-      let cardCredentials = { 
-        amount: 7.99,
-        description: `Compra de membresia`,
-        entity_description: `Compra de membresia`,
-        currency: USD,
-        credit_card_number: 4242424242424242,
-        credit_card_security_code_number: 123,
-        exp_month: 12,
-        exp_year: 2020
-      }
-
-      let resp = await simplePurchase(accessToken.data, cardCredentials)
-      console.log(resp.data)
-    } catch (err) {
-      console.log(err)
-      return res.status(SERVER_ERROR).json(await serializeErrors([ERROR_STORE_DATA]))
-    }
+  async findMembershipActivated (id) {
+    let memberhsip = await Membership.findById(id)
+    return memberhsip?.isActive 
   }
-
 }
 
 module.exports = new MembershipController
