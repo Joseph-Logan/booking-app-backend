@@ -16,7 +16,7 @@ class ProjectController {
 
   async index (req, res) {
     try {
-      let projects = await Project.find().populate('membership category', '-__v').select('-__v')
+      let projects = await Project.find().populate('category', '-__v').select('-__v') // populate('membership category', '-__v')
 
       projects = projects.filter(item => item.isEnabled)
       return res.json({

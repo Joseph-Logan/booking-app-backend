@@ -1,8 +1,6 @@
 const { Membership, Bill } = require('../model')
 const { serializeErrors } = require('../validator/single-validation-error')
-const { 
-  purchaseMembership
-} = require('../../services/payment')
+const { purchaseProcess } = require('../../services/payment')
 
 const {
   ERROR_STORE_DATA
@@ -11,7 +9,6 @@ const {
 const {
   SERVER_ERROR, CREATED
 } = require('../../utils/codes')
-const { findById } = require('../model/bill')
 
 class MembershipController {
 
@@ -35,7 +32,7 @@ class MembershipController {
         user_data
       } = req.body
 
-      let purchaseResult = await purchaseMembership(card_credentials)
+      let purchaseResult = await purchaseProcess(card_credentials)
 
       let billData = {
         user: user_data.id,

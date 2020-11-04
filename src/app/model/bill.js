@@ -1,8 +1,5 @@
 const mongoose = require('mongoose')
-const { 
-  USER, 
-  PROJECT 
-} = require("../../utils/strings");
+const { USER } = require("../../utils/strings");
 
 const BillSchema = new mongoose.Schema({
   user: {
@@ -16,7 +13,7 @@ const BillSchema = new mongoose.Schema({
   description: {
     type: String,
     required: true,
-    max: 100
+    max: 1024
   },
   transanctionId: {
     type: String,

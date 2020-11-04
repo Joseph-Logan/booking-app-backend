@@ -11,9 +11,9 @@ const {
   UserController
 } = require('../app/controller')
 
-/**
-* ROUTES
-*/
+/** 
+ * ROUTES
+ */
 api.post('/sign-up', AuthController.singUp)
 api.post('/sign-in', AuthController.signInAndSendToken)
 

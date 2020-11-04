@@ -1,6 +1,6 @@
 const { DEFAULT_DESCRIPTION, USD } = require('../../utils/strings')
 const mongoose = require('mongoose')
-const { createCode } = require('../../services/membership')
+const { createCode } = require('../../services/handle-code')
 
 const Membership = new mongoose.Schema({
   code: {
