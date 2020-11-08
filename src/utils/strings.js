@@ -12,7 +12,7 @@ const REGISTER_FAILED = 'The register was failed, so try again'
 const DEFAULT_DESCRIPTION = 'The membership got it'
 const ERROR_MEMBERSHIP_ACTIVE = 'Membership has been activated'
 // PROJECT
-const DEFAULT_PATH_IMG = '/storage/images/default.jpg'
+const DEFAULT_PATH_IMG = '/images/default.jpg'
 
 // CONTACT
 const DEFAULT_DIRECTION = 'Direction not defined'
