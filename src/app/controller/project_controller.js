@@ -66,11 +66,12 @@ class ProjectController {
 
       await Membership.findByIdAndUpdate(membership, dataMembership)
 
-      let projectUpdated = await Project.findByIdAndUpdate(project, dataProject, {new: true})
+      let projectUpdated = await Project.findByIdAndUpdate(project, dataProject, {new: true, runValidators: true})
 
       return res.json(projectUpdated)
     } catch (err) {
-      return res.status(SERVER_ERROR).json(await serializeErrors([err]))
+      let error = err?.message || ERROR_UPDATE_DATA
+      return res.status(SERVER_ERROR).json(await serializeErrors([error]))
     }
   }
 

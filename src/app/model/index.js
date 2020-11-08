@@ -9,5 +9,6 @@ module.exports = {
   Project: require('./project'),
   Category: require('./category'),
   Contact: require('./contact'),
-  Bill: require('./bill')
+  Bill: require('./bill'),
+  Product: require('./product')
 }

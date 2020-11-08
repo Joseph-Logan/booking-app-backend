@@ -4,6 +4,7 @@ const CategoryController = require('./category_controller')
 const MembershipController = require('./membership_controller')
 const ProjectController = require('./project_controller')
 const UserController = require('./user_controller')
+const ProductoController = require('./product_controller')
 
 module.exports = {
   AuthController,
@@ -11,5 +12,6 @@ module.exports = {
   CategoryController,
   MembershipController,
   ProjectController,
-  UserController
+  UserController,
+  ProductoController
 }

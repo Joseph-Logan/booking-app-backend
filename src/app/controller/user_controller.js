@@ -40,11 +40,12 @@ class UserController {
       if (check) {
         data.password = await bcryptPassword(data.password)
       }
-      let userUpdated = await User.findByIdAndUpdate(id, data, {new: true})
+      let userUpdated = await User.findByIdAndUpdate(id, data, {new: true, runValidators: true})
 
       return res.json(userUpdated)
     } catch (err) {
-      return res.status(SERVER_ERROR).json(await serializeErrors([ERROR_UPDATE_DATA]))
+      let error = err?.message || ERROR_UPDATE_DATA
+      return res.status(SERVER_ERROR).json(await serializeErrors([error]))
     }
   }
 
@@ -59,12 +60,13 @@ class UserController {
             projects: projectId
           }
         }, 
-        {new: true}
+        {new: true, runValidators: true}
       )
 
       return res.status(ACCEPTED).json(userUpdated)
     } catch (err) {
-      return res.status(SERVER_ERROR).json(await serializeErrors([ERROR_STORE_DATA]))
+      let error = err?.message || ERROR_STORE_DATA
+      return res.status(SERVER_ERROR).json(await serializeErrors([error]))
     }
   }
 }

@@ -1,5 +1,10 @@
 const mongoose = require('mongoose')
-const { PROJECT } = require('../../utils/strings')
+
+const { 
+  PROJECT, 
+  DEFAULT_PATH_IMG 
+} = require('../../utils/strings')
+
 const { createCode } = require('../../services/handle-code')
 
 const Product = new mongoose.Schema({
@@ -25,7 +30,8 @@ const Product = new mongoose.Schema({
   },
   price: {
     type: Number,
-    min: 0.00
+    min: 0.00, 
+    default: 0.00
   },
   isActive: {
     type: Boolean,
@@ -49,7 +55,6 @@ const Product = new mongoose.Schema({
 Product.pre('save', async function (next) {
   try {
     this.code = await createCode()
-
     next()
   } catch (err) {
     next(err)

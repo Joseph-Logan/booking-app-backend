@@ -30,6 +30,10 @@ const DELETE_CATEGORY_MSG = 'Category was deleted successfully'
 // CODE
 const ERROR_CODE_MSG = 'Error to generate code'
 
+// PRODUCT
+const DELETE_PRODUCT_MSG = 'Product was deleted successfully'
+
+
 // DEFAULT MESSAGES
 const INVALID_CREDENTIALS = 'Your credentials are invalids'
 const ERROR_GET_DATA = 'Error to get data, try again'
@@ -56,5 +60,6 @@ module.exports = {
   ERROR_UPDATE_DATA,
   DELETE_ROLE_MSG,
   DELETE_CATEGORY_MSG,
-  ERROR_CODE_MSG
+  ERROR_CODE_MSG,
+  DELETE_PRODUCT_MSG
 }

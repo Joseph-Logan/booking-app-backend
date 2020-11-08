@@ -8,7 +8,8 @@ const {
   CategoryController,
   MembershipController,
   ProjectController,
-  UserController
+  UserController,
+  ProductoController
 } = require('../app/controller')
 
 /** 
@@ -43,6 +44,14 @@ api.get('/user', validateActiveAuth, UserController.index)
 api.post('/user-project', validateActiveAuth, UserController.storeProjectByUserId)
 api.put('/user/:id', validateActiveAuth, UserController.update)
 
+// PRODUCT
+
+api.get('/product', validateActiveAuth, ProductoController.index)
+api.get('/product/:id', validateActiveAuth, ProductoController.show)
+api.post('/product', validateActiveAuth, ProductoController.store)
+api.put('/product/:id', validateActiveAuth, ProductoController.update)
+api.patch('/product/:id', validateActiveAuth, ProductoController.update)
+api.delete('/product/:id', validateActiveAuth, ProductoController.destroy)
 // Response when route was not found
 api.get('*', (req, res) => {
   res.status(404).send('Error Route')
