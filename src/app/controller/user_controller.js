@@ -44,7 +44,7 @@ class UserController {
 
       return res.json(userUpdated)
     } catch (err) {
-      let error = err?.message || ERROR_UPDATE_DATA
+      let error = err.message || ERROR_UPDATE_DATA
       return res.status(SERVER_ERROR).json(await serializeErrors([error]))
     }
   }
@@ -65,7 +65,7 @@ class UserController {
 
       return res.status(ACCEPTED).json(userUpdated)
     } catch (err) {
-      let error = err?.message || ERROR_STORE_DATA
+      let error = err.message || ERROR_STORE_DATA
       return res.status(SERVER_ERROR).json(await serializeErrors([error]))
     }
   }

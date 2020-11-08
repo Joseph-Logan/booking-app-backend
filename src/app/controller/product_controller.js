@@ -62,7 +62,7 @@ class ProductController {
       let productUpdated = await Product.findByIdAndUpdate(id, data, { new: true, runValidators: true })
       return res.status(ACCEPTED).json(productUpdated)
     } catch (err) {
-      let error = err?.message || ERROR_UPDATE_DATA
+      let error = err.message || ERROR_UPDATE_DATA
       return res.status(SERVER_ERROR).json(await serializeErrors([error]))
     }
   }

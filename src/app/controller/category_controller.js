@@ -60,7 +60,7 @@ class CategoryController {
       let categoryUpdated = await Category.findByIdAndUpdate(id, data, {new: true, runValidators: true})
       return res.json(categoryUpdated)
     } catch (err) {
-      let error = err?.message || ERROR_UPDATE_DATA
+      let error = err.message || ERROR_UPDATE_DATA
       return res.status(SERVER_ERROR).json(await serializeErrors([error]))
     }
   }

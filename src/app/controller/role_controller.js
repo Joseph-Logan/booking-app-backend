@@ -61,7 +61,7 @@ class RoleController {
 
       return res.status(OK).json(roleUpdated)
     } catch (err) {
-      let error = err?.message || ERROR_UPDATE_DATA
+      let error = err.message || ERROR_UPDATE_DATA
       return res.status(SERVER_ERROR).json(await serializeErrors([error]))
     }
   }

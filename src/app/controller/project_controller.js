@@ -81,7 +81,7 @@ class ProjectController {
 
       return res.json(projectUpdated)
     } catch (err) {
-      let error = err?.message || ERROR_UPDATE_DATA
+      let error = err.message || ERROR_UPDATE_DATA
       return res.status(SERVER_ERROR).json(await serializeErrors([error]))
     }
   }

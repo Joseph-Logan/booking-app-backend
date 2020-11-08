@@ -51,7 +51,7 @@ class MembershipController {
 
       return res.status(CREATED).json(membershipSaved)
     } catch (err) {
-      let error = err?.response?.data?.detail || ERROR_STORE_DATA
+      let error = err.response.data.detail || ERROR_STORE_DATA
       return res.status(SERVER_ERROR).json(await serializeErrors([error]))
     }
   }
