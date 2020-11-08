@@ -26,7 +26,7 @@ api.put('/role/:id', validateActiveAuth, RoleController.update)
 api.delete('/role/:id', validateActiveAuth, RoleController.destroy)
 
 // CATEGORY
-api.get('/category', validateActiveAuth, CategoryController.index)
+api.get('/category', CategoryController.index)
 api.get('/category/:id', validateActiveAuth, CategoryController.show)
 api.post('/category', validateActiveAuth, CategoryController.store)
 api.put('/category/:id', validateActiveAuth, CategoryController.update)
@@ -37,6 +37,7 @@ api.get('/membership', validateActiveAuth, MembershipController.index)
 api.post('/purchase-membership', validateActiveAuth, MembershipController.pruchaseAndStoreMembership)
 // PROJECT
 api.get('/project', ProjectController.index)
+api.get('/project-category/:id', ProjectController.projectByCategory)
 api.post('/project', validateActiveAuth, ProjectController.store)
 api.post('/active-project', validateActiveAuth, ProjectController.activeProjectAndMembership)
 // USER
@@ -45,7 +46,6 @@ api.post('/user-project', validateActiveAuth, UserController.storeProjectByUserI
 api.put('/user/:id', validateActiveAuth, UserController.update)
 
 // PRODUCT
-
 api.get('/product', validateActiveAuth, ProductoController.index)
 api.get('/product/:id', validateActiveAuth, ProductoController.show)
 api.post('/product', validateActiveAuth, ProductoController.store)

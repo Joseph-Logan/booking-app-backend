@@ -16,9 +16,20 @@ class ProjectController {
 
   async index (req, res) {
     try {
-      let projects = await Project.find().populate('category', '-__v').select('-__v') // populate('membership category', '-__v')
+      let projects = await Project.find({isEnabled: true}).populate('category', '-__v').select('-__v') // populate('membership category', '-__v')
 
-      projects = projects.filter(item => item.isEnabled)
+      return res.json({
+        projects
+      })
+    } catch (err) {
+      return res.status(SERVER_ERROR).json(await serializeErrors([ERROR_GET_DATA]))
+    }
+  }
+
+  async projectByCategory (req, res) {
+    try {
+      let id = req.params.id
+      let projects = await Project.find({category: id, isEnabled: true}).populate('category', '-__v').select('-__v')
       return res.json({
         projects
       })
