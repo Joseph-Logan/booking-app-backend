@@ -58,7 +58,7 @@ class MembershipController {
 
   async findMembershipActivated (id) {
     let memberhsip = await Membership.findById(id)
-    return memberhsip?.isActive 
+    return memberhsip.isActive 
   }
 }
 
