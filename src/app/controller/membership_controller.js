@@ -44,7 +44,8 @@ class MembershipController {
       await bill.save()
 
       let membership = new Membership({
-        ...membership_data, 
+        ...membership_data,
+        user: user_data.id,
         transactionId: purchaseResult.data.charge_id
       })
       let membershipSaved = await membership.save()

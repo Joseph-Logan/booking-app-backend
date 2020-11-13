@@ -48,6 +48,7 @@ class ProjectController {
 
       return res.status(CREATED).json(projectSaved)
     } catch (err) {
+      console.log(err)
       return res.status(SERVER_ERROR).json(await serializeErrors([ERROR_STORE_DATA]))
     }
   }
