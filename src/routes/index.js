@@ -42,7 +42,9 @@ api.post('/project', validateActiveAuth, ProjectController.store)
 api.post('/active-project', validateActiveAuth, ProjectController.activeProjectAndMembership)
 // USER
 api.get('/user', validateActiveAuth, UserController.index)
-api.post('/user-project', validateActiveAuth, UserController.storeProjectByUserId)
+// api.post('/user-project', validateActiveAuth, UserController.storeProjectByUserId)
+api.post('/project-by-user', validateActiveAuth, UserController.getProjectByUserId)
+
 api.put('/user/:id', validateActiveAuth, UserController.update)
 
 // PRODUCT

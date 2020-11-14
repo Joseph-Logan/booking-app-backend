@@ -1,6 +1,7 @@
 const { Project, Membership } = require('../model')
 const { serializeErrors } = require('../validator/single-validation-error')
 const MembershipController = require('./membership_controller')
+const UserController = require('./user_controller')
 
 const {
   ERROR_GET_DATA, 
@@ -41,10 +42,21 @@ class ProjectController {
 
   async store (req, res) {
     try {
-      let data = req.body
-      let project = new Project(data)
+      let { 
+        project, 
+        user 
+      } = req.body
 
-      let projectSaved = await project.save()
+      let projectModel = new Project(project)
+
+      let projectSaved = await projectModel.save()
+
+      let userProject = {
+        projectId: projectSaved._id,
+        userId: user._id
+      }
+
+      await UserController.storeProjectByUserId(userProject)
 
       return res.status(CREATED).json(projectSaved)
     } catch (err) {

@@ -1,4 +1,4 @@
-const { User } = require('../model')
+const { User, Project } = require('../model')
 const { serializeErrors } = require('../validator/single-validation-error')
 
 const {
@@ -31,6 +31,26 @@ class UserController {
     }
   }
 
+  async getProjectByUserId (req, res) {
+    try {
+      let projects = []
+      let { userId } = req.body
+
+      let users = await User.findById(userId)
+      let projectsData = users.projects
+     
+      for (const item of projectsData) {
+        let project = await Project.findById(item).populate('category').select('-__v')
+        if (project) projects.push(project)
+      }
+      return res.json({
+        projects 
+      })
+    } catch (err) {
+      return res.status(SERVER_ERROR).json(await serializeErrors([ERROR_GET_DATA]))
+    }
+  }
+
   async update (req, res) {
     try {
       let id = req.params.id
@@ -49,25 +69,19 @@ class UserController {
     }
   }
 
-  async storeProjectByUserId (req, res) {
-    try {
-      let { projectId, userId } = req.body
+  async storeProjectByUserId (data) {
+    let { projectId, userId } = data
 
-      let userUpdated = await User.findByIdAndUpdate(
-        userId,
-        {
-          $push: {
-            projects: projectId
-          }
-        }, 
-        {new: true, runValidators: true}
-      )
-
-      return res.status(ACCEPTED).json(userUpdated)
-    } catch (err) {
-      let error = err.message || ERROR_STORE_DATA
-      return res.status(SERVER_ERROR).json(await serializeErrors([error]))
-    }
+    let userUpdated = await User.findByIdAndUpdate(
+      userId,
+      {
+        $push: {
+          projects: projectId
+        }
+      }, 
+      {new: true, runValidators: true}
+    )
+    return userUpdated
   }
 }
 

@@ -34,7 +34,8 @@ const User = new mongoose.Schema({
   dni: {
     type: String,
     required: true,
-    min: 9
+    min: 9,
+    unique: true
   },
   password: { 
     type: String, 
