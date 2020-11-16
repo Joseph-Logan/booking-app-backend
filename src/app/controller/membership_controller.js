@@ -24,6 +24,20 @@ class MembershipController {
     }
   }
 
+  async membershipByUser (req, res) {
+    try {
+      let userId = req.params.id
+
+      let memberships = await Membership.find({ user: userId })
+
+      return res.json({
+        memberships
+      })
+    } catch (err) {
+      return res.status(SERVER_ERROR).json(await serializeErrors([ERROR_GET_DATA]))
+    }
+  }
+
   async pruchaseAndStoreMembership (req, res) {
     try {
       let { 

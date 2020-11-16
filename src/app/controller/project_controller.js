@@ -6,11 +6,12 @@ const UserController = require('./user_controller')
 const {
   ERROR_GET_DATA, 
   ERROR_STORE_DATA,
-  ERROR_MEMBERSHIP_ACTIVE
+  ERROR_MEMBERSHIP_ACTIVE,
+  ERROR_UPDATE_DATA
 } = require('../../utils/strings')
 
 const {
-  SERVER_ERROR, CREATED
+  SERVER_ERROR, CREATED, BAD_REQUEST
 } = require('../../utils/codes')
 
 class ProjectController {
@@ -94,8 +95,8 @@ class ProjectController {
 
       return res.json(projectUpdated)
     } catch (err) {
-      let error = err.message || ERROR_UPDATE_DATA
-      return res.status(SERVER_ERROR).json(await serializeErrors([error]))
+      let error = err || ERROR_UPDATE_DATA
+      return res.status(BAD_REQUEST).json(await serializeErrors([error]))
     }
   }
 
